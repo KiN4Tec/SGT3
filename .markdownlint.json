@@ -1,0 +1,10 @@
+{
+	"MD007": {
+		"indent": 4
+	},
+	"no-hard-tabs": false,
+	"line-length": false,
+	"no-duplicate-heading": false,
+	"MD025": false,
+	"no-inline-html": false
+}

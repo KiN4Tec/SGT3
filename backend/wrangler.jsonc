@@ -1,0 +1,48 @@
+{
+	"$schema": "../node_modules/wrangler/config-schema.json",
+	"name": "sgt3",
+	"main": "src/index.ts",
+	"compatibility_date": "2026-10-07",
+	"compatibility_flags": ["nodejs_compat"],
+	"vars": {
+		"JWT_SECRET": "my_secret_jwt_key",
+	},
+	"kv_namespaces": [
+		{
+			"binding": "SGT3_Board_States_Cache",
+			"id": "eb61500ef93b4632b028ee87c68fbd98",
+		},
+	],
+	"d1_databases": [
+		{
+			"binding": "sgt3_d1",
+			"database_name": "sgt3_d1",
+		},
+	],
+	"durable_objects": {
+		"bindings": [
+			{
+				"name": "GAME_ROOM",
+				"class_name": "GameRoom",
+			},
+			{
+				"name": "MATCHMAKER",
+				"class_name": "Matchmaker",
+			},
+		],
+	},
+	"exports": {
+		"GameRoom": {
+			"type": "durable-object",
+			"storage": "sqlite",
+		},
+		"Matchmaker": {
+			"type": "durable-object",
+			"storage": "sqlite",
+		},
+	},
+	"observability": {
+		"enabled": true,
+		"head_sampling_rate": 1,
+	},
+}

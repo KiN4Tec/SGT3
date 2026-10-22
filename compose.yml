@@ -1,0 +1,62 @@
+services:
+    router:
+        build: ./proxy_router
+        image: kin4tec/sgt3-router-dev
+        container_name: sgt3-router
+        ports:
+            - "8080:8080"
+        links:
+            - frontend
+            - backend
+        develop:
+            watch:
+                - action: sync+restart
+                  path: ./proxy_router/nginx.conf
+                  target: /etc/nginx/nginx.conf
+
+    frontend:
+        build:
+            context: .
+            dockerfile: frontend/Dockerfile
+        image: kin4tec/sgt3-frontend-dev
+        container_name: sgt3-frontend
+        develop:
+            watch:
+                - action: sync
+                  path: ./frontend
+                  target: /app/frontend
+                  ignore:
+                      - node_modules/
+                      - dist/
+                - action: sync
+                  path: ./common
+                  target: /app/common
+                  ignore:
+                      - node_modules/
+                - action: rebuild
+                  path: ./package.json
+                - action: rebuild
+                  path: ./frontend/package.json
+
+    backend:
+        build:
+            context: .
+            dockerfile: backend/Dockerfile
+        image: kin4tec/sgt3-backend-dev
+        container_name: sgt3-backend
+        develop:
+            watch:
+                - action: sync
+                  path: ./backend
+                  target: /app/backend
+                  ignore:
+                      - node_modules/
+                - action: sync
+                  path: ./common
+                  target: /app/common
+                  ignore:
+                      - node_modules/
+                - action: rebuild
+                  path: ./package.json
+                - action: rebuild
+                  path: ./backend/package.json

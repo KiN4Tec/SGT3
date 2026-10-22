@@ -1,0 +1,10 @@
+{
+	"name": "sgt3-common",
+	"private": true,
+	"version": "0.0.1",
+	"type": "module",
+	"description": "Common libraries of the Serverless Game of Tic-Tac-Toe",
+	"author": "Mouhammed Nashat Helmi <KiN4Tec@Gmail.com>",
+	"license": "MIT",
+	"main": "src/index.ts"
+}

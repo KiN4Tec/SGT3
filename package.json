@@ -1,0 +1,24 @@
+{
+	"name": "sgt3-monorepo",
+	"private": true,
+	"version": "0.0.1",
+	"description": "A Serverless Game of Tic-Tac-Toe",
+	"type": "module",
+	"scripts": {
+		"lint": "eslint",
+		"format": "prettier . --write"
+	},
+	"workspaces": [
+		"common",
+		"backend",
+		"frontend"
+	],
+	"devDependencies": {
+		"@eslint/js": "^10.0.1",
+		"eslint": "^10.12.0",
+		"globals": "^17.13.0",
+		"jiti": "^2.7.0",
+		"prettier": "^3.9.10",
+		"typescript-eslint": "^8.71.2"
+	}
+}
